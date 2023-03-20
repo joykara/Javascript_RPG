@@ -73,6 +73,12 @@ const locations = [
         "button text": ["Fight slime", "Fight fanged beast", "Go to Town Square"],
         "button functions": [fightSlime, fightBeast, goTown],
         text: "You entered the Cave. You see some monsters."
+    },
+    {
+        name: "Cave",
+        "button text": ["Fight slime", "Fight fanged beast", "Go to Town Square"],
+        "button functions": [fightSlime, fightBeast, goTown],
+        text: "You entered the Cave. You see some monsters."
     }
 
 ] //empty array
@@ -157,15 +163,22 @@ function sellWeapon() {
 // ------------ FIGHTING MONSTERS ------------
 
 function fightSlime() {
-    
+    fighting = 0
+    goFight()
 }
 
 function fightBeast() {
-    
+    fighting = 1
+    goFight()
 }
 
 function fightDragon() {
-    console.log("Fighting dragon.")
+    fighting = 2
+    goFight()
+}
+
+function goFight() {
+    
 }
 
 
