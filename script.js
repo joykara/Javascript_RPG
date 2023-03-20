@@ -37,7 +37,23 @@ const weapons = [
     }
 ];
 
-
+const monsters = [
+    {
+        name: "Slime",
+        level: 2,
+        health: 15
+    },
+    {
+        name: "Fanged Beast",
+        level: 8,
+        health: 60
+    },
+    {
+        name: "Dragon",
+        level: 20,
+        health: 300
+    }
+];
 
 const locations = [
     {
