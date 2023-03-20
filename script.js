@@ -75,10 +75,10 @@ const locations = [
         text: "You entered the Cave. You see some monsters."
     },
     {
-        name: "Cave",
-        "button text": ["Fight slime", "Fight fanged beast", "Go to Town Square"],
-        "button functions": [fightSlime, fightBeast, goTown],
-        text: "You entered the Cave. You see some monsters."
+        name: "Fight",
+        "button text": ["Attack", "Dodge", "Run"],
+        "button functions": [attack, dodge, goTown],
+        text: "You are fighting a monster."
     }
 
 ] //empty array
