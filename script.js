@@ -15,7 +15,7 @@ const xpText = document.querySelector("#xpTest")
 const healthText = document.querySelector("#healthText")
 const goldText = document.querySelector("#goldText")
 const monsterStats = document.querySelector("#monsterStats")
-const monsterName = document.querySelector("#monsterName")
+const monsterNameText = document.querySelector("#monsterName")
 const monsterHealthText = document.querySelector("#monsterHealth")
 
 const weapons = [
@@ -178,7 +178,22 @@ function fightDragon() {
 }
 
 function goFight() {
+    update.locations[3]
+    monsterHealth = monsters[fighting].health
+    monsterStats.style.display = "block";  //display and update css
+    monsterNameText.innerText = monsters[fighting].name
+    monsterHealthText.innerText = monsterHealth;
+}
+
+function attack() {
     
 }
 
+function dodge() {
+    
+}
+
+function run() {
+    
+}
 

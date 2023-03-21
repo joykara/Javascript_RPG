@@ -29,7 +29,7 @@ body {
   }
   
   #monsterStats {
-    display: none;
+    display: none;       /*take note */
     border: 1px black solid;
     color: white;
     padding: 5px;
