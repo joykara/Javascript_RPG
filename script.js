@@ -79,6 +79,24 @@ const locations = [
         "button text": ["Attack", "Dodge", "Run"],
         "button functions": [attack, dodge, goTown],
         text: "You are fighting a monster."
+    },
+    {
+        name: "Kill Monster",
+        "button text": ["Go to Town Square", "Go to Town Square", "Go to Town Square"],
+        "button functions": [goTown, goTown, goTown],
+        text: "The monster screams 'Argh!' and dies. You win! Gain xp and find gold."
+    },
+    {
+        name: "Lose",
+        "button text": ["Replay?", "Replay?", "Replay?"],
+        "button functions": [restart, restart, goTown],
+        text: "Game Over! You die. ☠👻"
+    },
+    {
+        name: "Win",
+        "button text": ["Replay?", "Replay?", "Replay?"],
+        "button functions": [restart, restart, goTown],
+        text: "You defeated the Dragon! You Win! 🎉"
     }
 
 ] //empty array
@@ -90,6 +108,7 @@ button3.onclick = fightDragon;
 
 //create function
 function update(location) {
+    monsterStats.style.display = "none";  //monsterStats no longer show up
     button1.innerText = location["button text"][0];
     button2.innerText = location["button text"][1];
     button3.innerText = location["button text"][2];
@@ -178,22 +197,70 @@ function fightDragon() {
 }
 
 function goFight() {
-    update.locations[3]
-    monsterHealth = monsters[fighting].health
-    monsterStats.style.display = "block";  //display and update css
-    monsterNameText.innerText = monsters[fighting].name
+    update(locations[3]);
+    monsterHealth = monsters[fighting].health;
+    monsterStats.style.display = "block";  //display and update css to show the stats
+    monsterNameText.innerText = monsters[fighting].name;
     monsterHealthText.innerText = monsterHealth;
 }
 
 function attack() {
-    
+    text.innerText = "The " + monsters[fighting].name + " attacks.";
+    text.innerText = "You attack it with your " + weapons[currentWeapon].name + " .";
+    health -= monsters[fighting].level;
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+    //monster gets damage, .floor - round dow to nearest whole no.
+    healthText.innerText = health;
+    monsterHealthText.innerText = monsterHealth;
+
+    if (health <= 0) {
+        lose();
+    }
+    else if (monsterHealth <= 0) {
+        if (fighting == 2) {
+            winGame();
+        } else {
+            defeatMonster();
+        }
+        //fighting === 2 ? winGame() : defeatMonster();
+        //fighting the dragon {turnary operator: if...else}
+    }
 }
 
 function dodge() {
-    
+    text.innerText = "You dodged the attack from " + monsters[fighting].name + ".";
 }
 
 function run() {
-    
+
 }
 
+function defeatMonster() {
+    gold += Math.floor(monsters[fighting].level * 6.7)
+    xp += monsters[fighting].level;
+    goldText.innerText = gold;
+    xpText.innerText = xp;
+    update(locations[4]);
+}
+
+function lose() {
+    text.innerText = "You lost! Gain xp and find gold."
+    update(locations[5]);
+}
+
+function winGame() {
+    update(locations[6]);
+}
+
+function restart() {
+    //reset all values
+    xp = 0;
+    health = 100;
+    gold = 50;
+    currentWeapon = 0;
+    inventory = ["Stick"];
+    goldText.innerText = gold;
+    healthText.innerText = health;
+    xpText.innerText = xp;
+    goTown();
+}
