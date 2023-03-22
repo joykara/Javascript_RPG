@@ -6,17 +6,17 @@ let fighting;
 let monsterHealth;
 let inventory = ["Stick"];
 
-const button1 = document.querySelector("#button1")
+const button1 = document.querySelector("#button1");
 // when creating a variable whose value is constant
-const button2 = document.querySelector("#button2")
-const button3 = document.querySelector("#button3")
-const text = document.querySelector("#text")
-const xpText = document.querySelector("#xpTest")
-const healthText = document.querySelector("#healthText")
-const goldText = document.querySelector("#goldText")
-const monsterStats = document.querySelector("#monsterStats")
-const monsterNameText = document.querySelector("#monsterName")
-const monsterHealthText = document.querySelector("#monsterHealth")
+const button2 = document.querySelector("#button2");
+const button3 = document.querySelector("#button3");
+const text = document.querySelector("#text");
+const xpText = document.querySelector("#xpTest");
+const healthText = document.querySelector("#healthText");
+const goldText = document.querySelector("#goldText");
+const monsterStats = document.querySelector("#monsterStats");
+const monsterNameText = document.querySelector("#monsterName");
+const monsterHealthText = document.querySelector("#monsterHealth");
 
 const weapons = [
     {
@@ -89,13 +89,13 @@ const locations = [
     {
         name: "Lose",
         "button text": ["Replay?", "Replay?", "Replay?"],
-        "button functions": [restart, restart, goTown],
+        "button functions": [restart, restart, restart],
         text: "Game Over! You die. ☠👻"
     },
     {
         name: "Win",
         "button text": ["Replay?", "Replay?", "Replay?"],
-        "button functions": [restart, restart, goTown],
+        "button functions": [restart, restart, restart],
         text: "You defeated the Dragon! You Win! 🎉"
     }
 
@@ -121,23 +121,22 @@ function goTown() {
     update(locations[0]);
 }
 function goStore() {
-    update(locations[1])  //in second array of locations
+    update(locations[1]);  //in second array of locations
 }
 
 function goCave() {
-    update(locations[2])
+    update(locations[2]);
 }
 
 function buyHealth() {
     if (gold >= 10) {
-        gold -= 10
-        health += 10
+        gold -= 10;
+        health += 10;
         goldText.innerText = gold;
         healthText.innerText = health;
-    }  //update details
-    else {
-        text.innerText("Not enough gold to buy health.")
-    }
+    } else {
+        text.innerText = "Not enough gold to buy health.";
+    }//update details
 
 }
 
@@ -146,7 +145,7 @@ function buyHealth() {
 function buyWeapon() {
     if (currentWeapon < weapons.length - 1){
         if (gold >= 30) {
-            gold -= 30
+            gold -= 30;
             currentWeapon++; //increase by 1
             goldText.innerText = gold;
             let newWeapon = weapons[currentWeapon].name;
@@ -155,11 +154,11 @@ function buyWeapon() {
             text.innerText += " In your inventory you have: " + inventory;  //update inventory
         }
         else {
-            text.innerText("Not enough gold to buy a weapon.")
+            text.innerText = "Not enough gold to buy a weapon.";
         }
     }
     else {
-        text.innerText("You already have the most powerful weapon.")
+        text.innerText= "You already have the most powerful weapon.";
         button2.onclick = "Sell weapon for 15 gold";
         button2.onclick = sellWeapon;
     }
@@ -168,32 +167,32 @@ function buyWeapon() {
 
 function sellWeapon() {
     if (inventory.length > 1) {
-        gold += 15
+        gold += 15;
         goldText.innerText = gold;
         let currentWeapon = inventory.shift();
         text.innerText = "You sold a " + currentWeapon + ".";
         text.innerText += " In your inventory you have: " + inventory; //update inventory
     }
     else {
-        text.innerText = "Don't sell your only weapon!"
+        text.innerText = "Don't sell your only weapon!";
     }
 }
 
 // ------------ FIGHTING MONSTERS ------------
 
 function fightSlime() {
-    fighting = 0
-    goFight()
+    fighting = 0;
+    goFight();
 }
 
 function fightBeast() {
-    fighting = 1
-    goFight()
+    fighting = 1;
+    goFight();
 }
 
 function fightDragon() {
-    fighting = 2
-    goFight()
+    fighting = 2;
+    goFight();
 }
 
 function goFight() {
@@ -215,14 +214,13 @@ function attack() {
 
     if (health <= 0) {
         lose();
-    }
-    else if (monsterHealth <= 0) {
-        if (fighting == 2) {
+    } else if (monsterHealth <= 0) {
+        /* if (fighting == 2) {
             winGame();
         } else {
             defeatMonster();
-        }
-        //fighting === 2 ? winGame() : defeatMonster();
+        } */
+        fighting === 2 ? winGame() : defeatMonster();
         //fighting the dragon {turnary operator: if...else}
     }
 }
@@ -239,12 +237,11 @@ function defeatMonster() {
     gold += Math.floor(monsters[fighting].level * 6.7)
     xp += monsters[fighting].level;
     goldText.innerText = gold;
-    xpText.innerText = xp;
+	xpText.innerText = xp;
     update(locations[4]);
 }
 
 function lose() {
-    text.innerText = "You lost! Gain xp and find gold."
     update(locations[5]);
 }
 
