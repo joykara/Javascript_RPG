@@ -229,16 +229,21 @@ function attack() {
         fighting === 2 ? winGame() : defeatMonster();
         //fighting the dragon {turnary operator: if...else}
     }
+
+    if (Math.random() <= .1 && inventory.length !==1) {
+        text.innerText += "Your " + inventory.pop() + " breaks.";
+        currentWeapon--;  //decrease by 1
+    }
 }
 
 function getMonsterAttackValue(level) {
-    let hit = (level * 5) - (Math.floor(Math.random() * level));
+    let hit = (level * 5) - (Math.floor(Math.random() * xp));
     console.log(hit);
     return hit;
 }
 
 function isMonsterHit() {
-    return Math.random > .2;  //returns true or false
+    return Math.random > .2 || health < 20;  //returns true or false
 }
 
 function dodge() {
