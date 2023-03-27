@@ -206,7 +206,13 @@ function goFight() {
 function attack() {
     text.innerText = "The " + monsters[fighting].name + " attacks.";
     text.innerText += "You attack it with your " + weapons[currentWeapon].name + " .";
-    health -= monsters[fighting].level;
+    if (isMonsterHit()) {
+        health -= getMonsterAttackValue(monsters[fighting].level);
+    }
+    else {
+        text.innerText += "You missed!";
+    }
+
     monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
     //monster gets damage, .floor - round dow to nearest whole no.
     healthText.innerText = health;
@@ -223,6 +229,16 @@ function attack() {
         fighting === 2 ? winGame() : defeatMonster();
         //fighting the dragon {turnary operator: if...else}
     }
+}
+
+function getMonsterAttackValue(level) {
+    let hit = (level * 5) - (Math.floor(Math.random() * level));
+    console.log(hit);
+    return hit;
+}
+
+function isMonsterHit() {
+    return Math.random > .2;  //returns true or false
 }
 
 function dodge() {
