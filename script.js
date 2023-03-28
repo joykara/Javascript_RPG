@@ -84,7 +84,7 @@ const locations = [
 		name: "kill monster",
 		"button text": ["Go to town square", "Go to town square", "Go to town square"],
 		"button functions": [goTown, goTown, easterEgg],
-		text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
+		text: 'The monster screams "Arg!" as it dies.\n You gain experience points and find gold.'
 	},
 	{
 		name: "lose",
@@ -102,7 +102,7 @@ const locations = [
 		name: "easter egg",
 		"button text": ["2", "8", "Go to town square?"],
 		"button functions": [pickTwo, pickEight, goTown],
-		text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
+		text: "You find a secret game. Pick a number above.\n Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
 	}
 ]
 
